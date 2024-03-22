@@ -334,7 +334,7 @@ if __name__ == "__main__":
             domain=domain,
             acquisition_type="EI",
             exact_feval=True,
-            initial_design_numdata=5,
+            initial_design_numdata=15,
             maximize=False 
         )
         
