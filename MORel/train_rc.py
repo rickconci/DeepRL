@@ -41,7 +41,6 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 #PointMaze_UMaze-v3
 
 
-
 class Offline_data_creator(Dataset):
     def __init__(self, env_name='PointMaze_UMaze-v3', n_pos_reward_traj=4, max_episode_steps = 1000,  normalise_data = True, video_path = '', capture_video= False, seed = None):
         self.device = device  
@@ -119,7 +118,7 @@ class Offline_data_creator(Dataset):
                 if terminated or truncated:
                     break  
             
-        print(len(states))
+        print('length of dataset', len(states))
         self.states = np.array(states)
         self.actions = np.array(actions)
         self.next_states = np.array(next_states)
@@ -294,6 +293,8 @@ def eval(args):
     agent.load(args.load_dir ) 
 
     agent.eval(dynamics_data.env)
+
+
     dynamics_data.env.close()
 
 def create_initial_data(args):
@@ -324,10 +325,10 @@ if __name__ == '__main__':
     parser.add_argument('--project_name', type=str, default='Morel_tests')
     parser.add_argument('--exp_name', type=str, default='exp_test')
     parser.add_argument('--no_log', action='store_true')
-    parser.add_argument('--load_dir', type=str , default = '/Users/riccardoconci/Local_documents/ACS submissions/CausalRL/DeepRL_miniproject/MOReL/results/exp_test_89/models')
+    parser.add_argument('--load_dir', type=str , default = 'results/exp_test_89/models')
     
 
     args = parser.parse_args()
-    #main(args)
-    eval(args)
+    main(args)
+    #eval(args)
     #create_initial_data(args)

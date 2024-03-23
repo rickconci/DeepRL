@@ -22,3 +22,24 @@ wandb login
 ```
 python dqn_equinox_BO_rc.py --enable_bo --track
 ```
+
+### Part 2: Implement MORel and evaluate dynamics model uncertainties
+
+1) Set up conda environment
+
+```
+conda env create -f morel.yml
+conda activate Morel
+```
+
+2) Run main training loop, include --wandb to log on W&B.
+
+* Running the training will save a series of pickle files in the save_files folder.
+
+```
+python train_rc.py --wandb
+```
+
+3) To view the dynamics uncertainties on the trained dynamics models and policy:
+
+* Go to Uncertainty_checks.ipynb, activate the Morel environment and run all from start.
